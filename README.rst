@@ -1,27 +1,5 @@
 Runestone Interactive Server and API
 
-
-.. image:: https://badge.waffle.io/RunestoneInteractive/RunestoneServer.png?label=ready&title=Ready
- :target: https://waffle.io/RunestoneInteractive/RunestoneServer
- :alt: 'Stories in Ready'
-
-.. image:: https://badges.gitter.im/Join%20Chat.svg
-   :alt: Join the chat at https://gitter.im/bnmnetp/runestone
-   :target: https://gitter.im/bnmnetp/runestone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-
-
-.. |buildstatus| image:: https://drone.io/github.com/bnmnetp/runestone/status.png
-
-Build Status |buildstatus|
-
-Relationship to other Runestone components
-------------------------------------------
-
-If you just want to use Runestone's capabilities to build pre-existing books or to make your own books using Sphinx and directives like ActiveCode, then you won't need this repository at all.
-
-This repository has the extra materials needed for running a web2py server with extra features for running courses using Runestone books and tools.
-
-
 Installation
 ------------
 
@@ -38,57 +16,62 @@ You can simply install all dependencies by running the following command in main
 
     # pip install -r requirements.txt
 
-Note, development works well with a Python ``virtualenv``  If  you don't have root privileges on your computer I strongly recommend you install ``virtualenv`` and install all of the dependencies there.
-
-On Windows machines, some of the installations may not go smoothly with pip.
-
-* For dulwich, you will need a C++ compiler.
-Install Microsoft Visual C++ Compiler for Python 2.7 from http://www.microsoft.com/en-us/download/details.aspx?id=44266.
-I had to also run: pip install setuptools --upgrade
-
-* For numpy, you can try the Windows installer from http://sourceforge.net/projects/numpy/postdownload?source=dlp If
-that fails, you can try installing from a wheel file at http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+It is recommended that you install python in a virtualenv. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
 
 2. Install web2py. The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
 `Here <http://www.web2py.com/examples/static/web2py_src.zip>`_ is a direct link to the zip archive.
-After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation").  I avoid the web2py.app installation on OS X as it messes with the Python path.  On Windows, the web2py.exe is also problematic because it won't find modules installed in a virtualenv.
+After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation").  I avoid the web2py.app installation on OS X as it messes with the Python path.
 
-3. Get familiar with the Runestone Components, which were installed with pip. The come from https://github.com/RunestoneInteractive/RunestoneComponents and there are good quick start instructions there.
+3. Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: ``git clone <repo_url> runestone``
 
-4. Clone this repository **into the web2py/applications directory**. If you might be contributing to the project, please fork this repository first and then do a local clone onto your machine, in the web2py/applications. You will contribute back to the project by making pull requests from your fork to this one.  When you make the clone you should clone it into runestone rather than the default RunestoneComponents.  All the web2py stuff is configured assuming that the application will be called runestone.
+All the web2py stuff is configured assuming that the application will be called runestone.
 
-5. Clone the book that you want to use, **into the web2py/applications/runestone/books** directory. You can see some of the available books at https://github.com/RunestoneInteractive Again, if you might contribute back to the book, please fork the book repository first and then do a local clone onto your machine.
+4. Clone the [thinkcspy](git@github.com:chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
 
-6. Set up your local database
+5. Set up your local database
 
-* Install postgreSQL (or you can try mySQL, but there may be some issues with field lengths with that.)
+* Install postgreSQL
 
 * Create a database
 
 * Figure out your database connection string. It will be something like ``postgres://username:passwd@localhost/dbname''
 
+Mac Installation
+----------------
+
+In ``.bash_profile``::
+
+  export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
+At a command line::
+
+  $ source .bash_rc
+  $ createdb habitual
+  $ psql
+
+In postgres (``psql``)::
+
+  > CREATE ROLE launchclass WITH LOGIN PASSWORD 'toinfinityandbeyond';
+  > GRANT ALL PRIVILEGES ON DATABASE runestone TO launchclass;
+
+*Note:* The following steps are unnecessary if you are installing the app locally using the same user/db settings above.
+
 * Tell web2py to use that database
     * Create a file applications/runestone/models/1.py, with the following line: ``settings.database_uri = <your_connection_string>``
         * NOTE: Don't put this inside an if statement, like it shows in models/1.prototype
     * If you're running https, edit settings.server_type in models/0.py
-    * on windows, you will also need to edit models/0.py
-        * remove the line ``from os import uname``
-        * remove the section beginning ``if 'local' in uname()[1] or 'Darwin' in uname()[0]:``
-    * You may also need to put the connection string somewhere else, TBD
     * You will need a customization to runestone/modules/chapternames.py
         * (Note: hopefully, this will be fixed in the future so that it automatically reads from models/1.py)
         * In chapternames.py, where it sets dburl = a connection string, put your connection string there.
 
-
 * Edit /applications/runestone/books/<yourbook>/pavement.py
     * set the master_url variable for your server, if not localhost
 
-# Run web2py once, so that it will create all the tables
+# Run web2py once, so that it will create all the tables (making sure you've activated your virtualenv)
     * cd web2py/
     * python web2py.py
 
-# Build the book.
-
+# Build the book
 
 * cd web2py/applications/runestone/books/<your book>
 
@@ -97,7 +80,7 @@ After you download it, extract the zip file to some folder on your hard drive. (
   * At the end, it should say ``trying alternative database access due to  No module named pydal`` and then, if things are working correctly, start outputting the names of the chapters.
 
 * runestone deploy
-    * If you're on windows where rsync doesn't work, here's the alternative
+    * The following may not be necessary. Check the static directory first to see if the book contents were already moved there.
         * rm -r applications/runestone/static/<your book name>
         * cd runestone/books/<your book name>
         * mv build/<your book name> ../static/
@@ -127,7 +110,7 @@ Documentation
 -------------
 
 Documentation for the project is on our official `documentation site <http://docs.runestoneinteractive.org>`_  This includes
-the list of dependencies you need to install in order to build the books included in the repository, or to set up 
+the list of dependencies you need to install in order to build the books included in the repository, or to set up
 a complete server environment.
 
 The Runestone Tools are not only good for authoring the textbooks contained in this site, but can also be used for:
@@ -135,38 +118,6 @@ The Runestone Tools are not only good for authoring the textbooks contained in t
 * Making your own lecture materials
 * Making online quizzes for use in class
 * Creating online polls for your course
-
-Whats New
----------
-
-* We just recently updated the ``activecode`` directive to support two new languages.  Javascript and HTML.
-
-How to Contribute
------------------
-
-#. Get a github (free) account.
-#. Make a fork of this project.  That will create a repository in your
-   account for you to have read/write access to.  Very nice, complete
-   instructions for making a fork are here:  ``https://help.github.com/articles/fork-a-repo``
-#. Clone the repository under your account to your local machine.
-#. Check the issues list, or add your own favorite feature.  commit and pull to your fork at will!
-#. test
-#. Make a Pull Request.  This will notify me that I should look at your changes and merge them into the main repository.
-#. Repeat!
-
-
-How to Contribute $$
---------------------
-
-As our popularity has grown we have server costs.  We
-were also able to make great progress during the Summer of 2013
-thanks to a generous grant from ACM-SIGCSE that supported one of our
-undergraduate students. It would be great if we could have a student
-working on this all the time.
-
-If this system or these books have helped you, please consider making a small
-donation using `gittip <https://www.gittip.com/bnmnetp/>`_
-
 
 More Documentation
 ------------------
@@ -200,24 +151,3 @@ Note, because this interactive edition makes use of lots of HTML 5 and Javascrip
 I highly recommend either Chrome, or Safari.  Firefox 6+ works too, but has
 proven to be less reliable than the first two.  I have no idea whether this works
 at all under later versions of Internet Explorer.
-
-Notes on running under Windows
-------------------------------
-
-As I mentioned up front, I'm not a windows user, But, others have figured out how to get the whole works running under windows anyway.  Here are some tips:
-
-1.  In models.0 you will want to add this:
-
-::
-
-    try:
-        from os import uname
-    except:
-        def uname():
-            return ['0', 'windows']
-
-
-   Now you can add a test for windows, and set your database settings accordingly.
-
-2.  In the pavement.py file we use cp to copy some files into place.  I *think* the equivalent on Windows is copy or copy.exe.
-
