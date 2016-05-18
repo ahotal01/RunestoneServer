@@ -16,23 +16,7 @@ def user():
     if 'register' in request.args(0):
         # If we can't pre-populate, just set it to blank.
         # This will force the user to choose a valid course name
-        db.auth_user.course_id.default = ''
-
-        # Otherwise, use the referer URL to try to pre-populate
-        ref = request.env.http_referer
-        if ref:
-            ref = unquote(ref)
-            if '_next' in ref:
-                ref = ref.split("_next")
-                url_parts = ref[1].split("/")
-            else:
-                url_parts = ref.split("/")
-
-            for i in range(len(url_parts)):
-                if "static" in url_parts[i]:
-                    course_name = url_parts[i+1]
-                    db.auth_user.course_id.default = course_name
-                    break
+        db.auth_user.course_id.default = 'asdf'
 
     form = auth()
 
@@ -86,7 +70,7 @@ def user():
 
     if 'login' in request.args(0):
         # add info text re: using local auth. CSS styled to match text on Janrain form
-        sign_in_text = TR(TD('Sign in with your Runestone Interactive account', _colspan='3'), _id='sign_in_text')
+        sign_in_text = TR(TD('Sign in with your account', _colspan='3'), _id='sign_in_text')
         form[0][0].insert(0, sign_in_text)
 
     # this looks horrible but it seems to be the only way to add a CSS class to the submit button
@@ -141,7 +125,7 @@ def about():
 def ack():
     return dict()
 
-    
+
 @auth.requires_login()
 def bio():
     existing_record = db(db.user_biography.user_id == auth.user.id).select().first()
