@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. Install python.
+### Install python.
 
 First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don't care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.
 
@@ -15,17 +15,19 @@ You can simply install all dependencies by running the following command in main
 
 It is recommended that you install python in a virtualenv. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
 
-2. Install web2py. The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
+### Install web2py
+
+The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
 [Here](http://www.web2py.com/examples/static/web2py_src.zip) is a direct link to the zip archive.
 After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation"). Avoid the web2py.app installation on OS X as it messes with the Python path.
 
-3. Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: `git clone <repo_url> runestone`
+### Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: `git clone <repo_url> runestone`
 
 All the web2py stuff is configured assuming that the application will be called runestone.
 
-4. Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
+### Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
 
-5. Set up your local database
+### Set up your local database
 
 * Install postgreSQL
 
@@ -33,7 +35,7 @@ All the web2py stuff is configured assuming that the application will be called 
 
 * Figure out your database connection string. It will be something like postgres://username:passwd@localhost/dbname'
 
-Mac Installation
+#### Mac Installation
 
 In `.bash_profile`:
 
@@ -67,7 +69,7 @@ In postgres (`psql`):
     * cd web2py/
     * python web2py.py
 
-* Build the book
+### Build the book
 
 * `cd web2py/applications/runestone/books/<your book>`
 
@@ -102,8 +104,7 @@ In postgres (`psql`):
 
 
 
-Documentation
--------------
+# Documentation
 
 Documentation for the project is on our official [documentation site](http://docs.runestoneinteractive.org>) This includes the list of dependencies you need to install in order to build the books included in the repository, or to set up a complete server environment.
 
@@ -113,8 +114,7 @@ The Runestone Tools are not only good for authoring the textbooks contained in t
 * Making online quizzes for use in class
 * Creating online polls for your course
 
-More Documentation
-------------------
+# More Documentation
 
 I have begun a project to document the [Runestone Interactive](http://docs.runestoneinteractive.org/build/html/index.html) tools
 
@@ -131,13 +131,11 @@ I have begun a project to document the [Runestone Interactive](http://docs.runes
 * How to write your own extension for Runestone Interactive
 
 
-Creating Your Own Textbook
---------------------------
+# Creating Your Own Textbook
 
 To find instructions on using the Runestone Tools to create your own interactive textbook, see the file in this directory named README_new_book.rst.
 
 
-Browser Notes
--------------
+# Browser Notes
 
 Note, because this interactive edition makes use of lots of HTML 5 and Javascript I highly recommend either Chrome, or Safari.  Firefox 6+ works too, but has proven to be less reliable than the first two.  I have no idea whether this works at all under later versions of Internet Explorer.
