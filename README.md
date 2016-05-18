@@ -37,18 +37,18 @@ Mac Installation
 
 In `.bash_profile`:
 
-  export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 At a command line:
 
-  $ source .bash_rc
-  $ createdb habitual
-  $ psql
+    $ source .bash_rc
+    $ createdb habitual
+    $ psql
 
 In postgres (`psql`):
 
-  > CREATE ROLE launchclass WITH LOGIN PASSWORD 'toinfinityandbeyond';
-  > GRANT ALL PRIVILEGES ON DATABASE runestone TO launchclass;
+    > CREATE ROLE launchclass WITH LOGIN PASSWORD 'toinfinityandbeyond';
+    > GRANT ALL PRIVILEGES ON DATABASE runestone TO launchclass;
 
 *The following steps are unnecessary if you are installing the app locally using the same user/db settings above.*
 
