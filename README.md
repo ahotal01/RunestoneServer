@@ -21,11 +21,11 @@ The easiest way to do so is to download the **Source Code** distribution from ht
 [Here](http://www.web2py.com/examples/static/web2py_src.zip) is a direct link to the zip archive.
 After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation"). Avoid the web2py.app installation on OS X as it messes with the Python path.
 
-### Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: `git clone <repo_url> runestone`
+Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: `git clone <repo_url> runestone`
 
 All the web2py stuff is configured assuming that the application will be called runestone.
 
-### Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
+Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
 
 ### Set up your local database
 
