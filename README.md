@@ -84,7 +84,7 @@ In postgres (`psql`):
 * Deploy the book
     * The following may not be necessary. Check the static directory first to see if the book contents were already moved there. From `runestone/books/<your book name>`:
         * `rm -r ../../static/<your book name>`
-        * `mv build/<your book name> ../static/`
+        * `mv build/<your book name> ../../static/`
 
 * Create an account for yourself
     * restart web2py if it's not running
