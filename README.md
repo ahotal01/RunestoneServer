@@ -2,7 +2,7 @@
 
 ## Installation
 
-### Install python.
+### Install python
 
 First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don't care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.
 
@@ -81,10 +81,9 @@ In postgres (`psql`):
 
   * At the end, it should say `trying alternative database access due to  No module named pydal` and then, if things are working correctly, start outputting the names of the chapters.
 
-* runestone deploy
-    * The following may not be necessary. Check the static directory first to see if the book contents were already moved there.
-        * `rm -r applications/runestone/static/<your book name>`
-        * `cd runestone/books/<your book name>`
+* Deploy the book
+    * The following may not be necessary. Check the static directory first to see if the book contents were already moved there. From `runestone/books/<your book name>`:
+        * `rm -r ../../static/<your book name>`
         * `mv build/<your book name> ../static/`
 
 * Create an account for yourself
