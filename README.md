@@ -7,13 +7,9 @@
 First, make sure you have Python 2.7 installed.  Web2py has not yet been ported to Python3.  Even if you don't care about the web2py part of the install, the version of paverutils on pypi is still a Python 2.x package, although the development version is now at 3.x.
 
 There are a couple of prerequisites you need to satisfy before you can build and use this
-eBook. The easiest/recommended way is to use `[pip](http://www.pip-installer.org/en/latest/)`.
+eBook. The easiest/recommended way is to use [pip](http://www.pip-installer.org/en/latest/).
 
-You can simply install all dependencies by running the following command in main runestone directory:
-
-  pip install -r requirements.txt
-
-It is recommended that you install python in a virtualenv. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
+You should set up a virtualenv for the app. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
 
 ### Install web2py
 
@@ -25,7 +21,13 @@ Clone this repository **into the web2py/applications directory**. When you make 
 
 All the web2py stuff is configured assuming that the application will be called runestone.
 
-Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available at https://github.com/RunestoneInteractive.
+Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available from [Runestone Interactive](https://github.com/RunestoneInteractive).
+
+### Install app dependencies
+
+You can install all dependencies by running the following command in main runestone directory. Make sure you have activated your virtualenv.
+
+  pip install -r requirements.txt
 
 ### Set up your local database
 
@@ -37,14 +39,14 @@ Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the
 
 #### Mac Installation
 
-In `.bash_profile`:
+In `~/.bash_profile` add:
 
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 At a command line:
 
-    $ source .bash_rc
-    $ createdb habitual
+    $ source ~/.bash_profile
+    $ createdb runestone
     $ psql
 
 In postgres (`psql`):
