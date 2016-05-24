@@ -39,6 +39,8 @@ You can install all dependencies by running the following command in main runest
 
 #### Mac Installation
 
+Install the [Postgres app](http://postgresapp.com).
+
 In `~/.bash_profile` add:
 
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
