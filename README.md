@@ -9,25 +9,23 @@ First, make sure you have Python 2.7 installed.  Web2py has not yet been ported 
 There are a couple of prerequisites you need to satisfy before you can build and use this
 eBook. The easiest/recommended way is to use [pip](http://www.pip-installer.org/en/latest/).
 
+If you're using a Mac, we highly recommend installing [Homebrew](http://brew.sh) and using it to install python (which also installs pip), rather than using the built-in installation.
+
 You should set up a virtualenv for the app. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
 
 ### Install web2py
 
-The easiest way to do so is to download the **Source Code** distribution from http://www.web2py.com/init/default/download.
-[Here](http://www.web2py.com/examples/static/web2py_src.zip) is a direct link to the zip archive.
-After you download it, extract the zip file to some folder on your hard drive. (web2py requires no real "installation"). Avoid the web2py.app installation on OS X as it messes with the Python path.
+The easiest way to do so is to download the source code distribution from the [web2py site](http://www.web2py.com/init/default/download). After you download it, extract the zip file to a folder on your hard drive (web2py requires no real "installation"). Avoid the web2py.app installation on OS X as it messes with the Python path.
 
-Clone this repository **into the web2py/applications directory**. When you make the clone you should clone it into runestone rather than the default RunestoneComponents: `git clone <repo_url> runestone`
+Clone this repository -- that is, the RunestoneSever -- into `web2py/applications`. Clone it into runestone rather than the default RunestoneServer: `git clone <repo_url> runestone`
 
 All the web2py stuff is configured assuming that the application will be called runestone.
 
-Clone the [thinkcspy](https://github.com/chrisbay/thinkcspy.git) book **into the web2py/applications/runestone/books** directory (this is a clone of the original, for modifying for LaunchCode usage). Other books are available from [Runestone Interactive](https://github.com/RunestoneInteractive).
+Clone the [thinkcspy](https://github.com/LaunchCodeEducation/thinkcspy) book into `web2py/applications/runestone/books` (this is a clone of the original, modified for LaunchCode classes). Other books are available from [Runestone Interactive](https://github.com/RunestoneInteractive).
 
 ### Install app dependencies
 
-You can install all dependencies by running the following command in main runestone directory. Make sure you have activated your virtualenv.
-
-  pip install -r requirements.txt
+You can install all dependencies by running the following command in main runestone directory. Make sure you have activated your virtualenv: `pip install -r requirements.txt`
 
 ### Set up your local database
 
@@ -35,7 +33,7 @@ You can install all dependencies by running the following command in main runest
 
 * Create a database
 
-* Figure out your database connection string. It will be something like postgres://username:passwd@localhost/dbname'
+* Figure out your database connection string. It will be something like `postgres://username:passwd@localhost/dbname`
 
 #### Mac Installation
 
@@ -59,19 +57,19 @@ In postgres (`psql`):
 *The following steps are unnecessary if you are installing the app locally using the same user/db settings above.*
 
 * Tell web2py to use that database
-    * Create a file applications/runestone/models/1.py, with the following line: `settings.database_uri = <your_connection_string>`
-        * NOTE: Don't put this inside an if statement, like it shows in models/1.prototype
-    * If you're running https, edit settings.server_type in models/0.py
-    * You will need a customization to runestone/modules/chapternames.py
-        * (Note: hopefully, this will be fixed in the future so that it automatically reads from models/1.py)
-        * In chapternames.py, where it sets dburl = a connection string, put your connection string there.
+    * Create a file `applications/runestone/models/1.py`, with the following line: `settings.database_uri = <your_connection_string>`
+        * NOTE: Don't put this inside an if statement, like it shows in `models/1.prototype`
+    * If you're running https, edit `settings.server_type` in `models/0.py`
+    * You will need a customization to `runestone/modules/chapternames.py`
+        * (Note: hopefully, this will be fixed in the future so that it automatically reads from `models/1.py`)
+        * In `chapternames.py`, where it sets the value of `dburl` to a connection string, place the value of your connection string.
 
-* Edit /applications/runestone/books/<yourbook>/pavement.py
-    * set the master_url variable for your server, if not localhost
+* Edit `/applications/runestone/books/<yourbook>/pavement.py`
+    * set the `master_url` variable for your server, if not `localhost`
 
 * Run web2py once, so that it will create all the tables (making sure you've activated your virtualenv)
-    * cd web2py/
-    * python web2py.py
+    * `cd web2py/`
+    * `python web2py.py`
 
 ### Build the book
 
@@ -107,36 +105,4 @@ In postgres (`psql`):
 
 # Documentation
 
-Documentation for the project is on our official [documentation site](http://docs.runestoneinteractive.org>) This includes the list of dependencies you need to install in order to build the books included in the repository, or to set up a complete server environment.
-
-The Runestone Tools are not only good for authoring the textbooks contained in this site, but can also be used for:
-
-* Making your own lecture materials
-* Making online quizzes for use in class
-* Creating online polls for your course
-
-# More Documentation
-
-I have begun a project to document the [Runestone Interactive](http://docs.runestoneinteractive.org/build/html/index.html) tools
-
-* All of the Runestone Interactive extensions to sphinx:
-
-    * Activecode -- Interactive Python in the browser
-    * Codelens  -- Step through code examples and see variables change
-    * mchoicemf  -- multiple choice questions with feedback
-    * mchoicema  -- multiple choice question with multiple answers and multiple feedback
-    * fillintheblank  -- fill in the blank questiosn with regular expression matching answers
-    * parsonsproblem  -- drag and drop blocks of code to complete a simple programming assignment
-    * datafile -- create datafiles for activecode
-
-* How to write your own extension for Runestone Interactive
-
-
-# Creating Your Own Textbook
-
-To find instructions on using the Runestone Tools to create your own interactive textbook, see the file in this directory named README_new_book.rst.
-
-
-# Browser Notes
-
-Note, because this interactive edition makes use of lots of HTML 5 and Javascript I highly recommend either Chrome, or Safari.  Firefox 6+ works too, but has proven to be less reliable than the first two.  I have no idea whether this works at all under later versions of Internet Explorer.
+There is an official [documentation site](http://docs.runestoneinteractive.org>) created by the original development team.
