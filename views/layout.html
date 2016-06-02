@@ -62,7 +62,7 @@
 
       <div>
         <a class="brand-logo" style='background: transparent url("{{=URL('static', 'images/lc_logo_small.png')}}") no-repeat 0px 0px;' href="{{=URL('default', 'user/login')}}">&nbsp; </a>
-        <a class="navbar-brand" href="/runestone/static/thinkcspy/index.html">Summer of Code: Python</a>
+        <a class="navbar-brand" href="/runestone/static/thinkcspy/index.html">Think Python</a>
       </div>
     </div>
 
@@ -71,23 +71,6 @@
       <ul class="nav navbar-nav navbar-right">
 
         <li class="divider-vertical"></li>
-
-        <!-- social media dropdown -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
-          </a>
-          <ul class="dropdown-menu social-menu">
-              <li>
-                <div>
-                  <b>LaunchCode in social media:</b>
-                </div>
-                <a href="https://twitter.com/Launch_Code" class="twitter-follow-button" data-show-count="true">Follow @Launch_Code</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                <div class="fb-like" data-href="https://www.facebook.com/launchcodestl" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
-              </li>
-          </ul>
-        </li>
-        <!-- end social media dropdown -->
 
         <!-- user account dropdown -->
         <li class="dropdown">
@@ -110,7 +93,7 @@
             {{ if auth.user: }}
               <li><a href="/{{=request.application}}/default/user/profile">Edit Profile</a>
               <li><a href="/{{=request.application}}/default/user/change_password">Change Password</a>
-              <li><a href='{{=URL('assignments','index')}}'>Progress Page</a></li>
+              <!--li><a href='{{=URL('assignments','index')}}'>Progress Page</a></li-->
               <li class='loginout'><a href='{{=URL("default", "user/logout")}}'>Log Out</a></li>
             {{ else: }}
               <li><a href='{{=URL("default", "user/register")}}'>Register</a></li>
