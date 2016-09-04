@@ -73,7 +73,7 @@ def index():
     query = '''select date(timestamp) xday, count(*)  ycount from useinfo where timestamp > '%s' and course_id = '%s' group by date(timestamp) order by xday''' % (d, row.course_name)
     rows = db.executesql(query)
     for row in rows:
-        bar_chart.x_labels.append(str(row[0]))
+        bar_chart.x_labels.append(row[0].strftime("%m/%d"))
         counts.append(row[1])
 
     bar_chart.add('Class', counts)
