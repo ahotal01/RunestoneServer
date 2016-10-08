@@ -99,6 +99,7 @@ def index():
                 user['course_name'] = getCourseNameFromId(course_id)    # need to set course_name because calls to verifyInstructor use it
                 user['section'] = section_id
                 user.update_record()
+                db.user_courses.update_or_insert(user_id=user.id,course_id=course_id)
             if section_id:
                 # set the section in the section_users table
                 # test this
@@ -110,5 +111,7 @@ def index():
         auth.login_user(user)
     #    print "Logged in..."
         logged_in = True
-    
+
+    redirect('/%s/static/%s/index.html' % (request.application, getCourseNameFromId(course_id)))
+
     return dict(logged_in=logged_in, lti_errors=lti_errors, masterapp=masterapp)

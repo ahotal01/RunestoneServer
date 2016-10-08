@@ -9,7 +9,7 @@ import datetime
 
 ## if SSL/HTTPS is properly configured and you want all HTTP requests to
 ## be redirected to HTTPS, uncomment the line below:
-# request.requires_https()
+# request.requires_htps()
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
@@ -129,10 +129,10 @@ class IS_COURSE_ID:
         return (value, self.e)
 
 class HAS_NO_DOTS:
-    def __init__(self, error_message='Your username may not contain a . or \' or space or any other special characters just letters and numbers'):
+    def __init__(self, error_message='Your username may not contain a \' or space or any other special characters just letters and numbers'):
         self.e = error_message
     def __call__(self, value):
-        if "." not in value and "'" not in value and " " not in value:
+        if "'" not in value and " " not in value:
             return (value, None)
         return (value, self.e)
     def formatter(self, value):
@@ -227,6 +227,16 @@ auth.settings.login_form = ExtendedLoginForm(auth, janrain_form) # uncomment thi
 #auth.settings.login_form = auth # uncomment this to just use web2py integrated authentication
 
 request.janrain_form = janrain_form # save the form so that it can be added to the user/register controller
+
+db.define_table('user_courses',
+                Field('user_id', db.auth_user, ondelete='CASCADE'),
+                Field('course_id', db.courses, ondelete='CASCADE'),
+                Field('user_id', db.auth_user),
+                Field('course_id', db.courses),
+                migrate='runestone_user_courses.table')
+# For whatever reason the automatic migration of this table failed.  Need the following manual statements
+# alter table user_courses alter column user_id type integer using user_id::integer;
+# alter table user_courses alter column course_id type integer using course_id::integer;
 
 #########################################################################
 ## Define your tables below (or better in another model file) for example

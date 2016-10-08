@@ -15,13 +15,13 @@
     <link rel="stylesheet" type="text/css" href="{{=URL('static', 'bootstrap-sphinx.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{=URL('static', 'runestone-custom-sphinx-bootstrap.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{=URL('static', 'css/dd.css')}}" />
-
+    <link rel="shortcut icon"
+    href="{{=URL('static','favicon.ico')}}" type="image/ico" />
     <script src="{{=URL('static', 'js/jquery-1.10.2.min.js')}}"></script>
     <script src="{{=URL('static', 'js/jquery-fix.js')}}"></script>
     <script src="{{=URL('static', 'js/web2py.js')}}"></script>
     <script src="{{=URL('static', 'bootstrap-3.0.0/js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static', 'bootstrap-sphinx.js')}}"></script>
-    <script type="text/javascript" src="{{=URL('static', 'js/dd.js')}}"></script>
     <script type="text/javascript">
       var eBookConfig = {};
       var portPart = '';
@@ -83,10 +83,15 @@
             {{ else: }}
               <li><span class='loggedinuser'>Not logged in</span></li>
             {{ pass }}
+            {{ if auth.user: }}
+            <li class="divider"></li>
+            <li><a href='/{{=request.application}}/default/courses'>Change Course</a></li>
+            {{ pass }}
+            <!---
             <li class="divider"></li>
             <!--li><a href='/{{=request.application}}/mygroup/schedule'>Group Schedule</a></li>
             <li><a href='/{{=request.application}}/mygroup/newschedule'>Schedule New Chapter</a></li>
-            <li><a href='/{{=request.application}}/mygroup/manageGroup'>Manage Group</a></li>
+            <li><a href='/{{=request.application}}/mygroup/manageGroup'>Manage Group</a></li> -->
             <li class="divider"></li>
             <li><a href='/{{=request.application}}/admin/index'>Instructor's Page</a></li>
             <li class="divider"></li-->
@@ -130,7 +135,7 @@
         {{ pass }}
       </p>
       <p>
-        &copy; Copyright 2014 Brad Miller, David Ranum
+        &copy; Copyright 2012 -- 2016 Brad Miller and Runestone contributors
       </p>
     </div>
   </footer>

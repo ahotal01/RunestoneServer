@@ -21,7 +21,6 @@
     <script src="{{=URL('static', 'js/web2py.js')}}"></script>    
     <script src="{{=URL('static', 'bootstrap-3.0.0/js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static', 'bootstrap-sphinx.js')}}"></script>
-    <script type="text/javascript" src="{{=URL('static', 'js/dd.js')}}"></script>
     <script type="text/javascript">
       var eBookConfig = {};
       var portPart = '';
@@ -62,7 +61,7 @@
 
       <div>
         <a class="brand-logo" style='background: transparent url("{{=URL('static', 'images/logo_small.png')}}") no-repeat 0px 0px;' href="{{=URL('default', 'user/login')}}">&nbsp; </a>
-        <a class="navbar-brand" href="/">Runestone Interactive</a>
+        <a class="navbar-brand" href="/"></a>
       </div>
     </div>
 
@@ -149,7 +148,7 @@
             <li><a href='/{{=request.application}}/static/overview/instructor.html'>Help for Instructors</a></li> 
             <li class="divider"></li>            
             <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
-            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+            <li><a href='/{{=request.application}}/default/reportabug/'>Report A Problem</a></li>
           </ul>
         </li>
 

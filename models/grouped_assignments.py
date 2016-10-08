@@ -131,6 +131,23 @@ db.define_table('assignment_types',
     migrate='runestone_assignment_types.table',
     )
 
+existing_types = []
+type_query = db(db.assignment_types).select()
+for assign_type in type_query:
+    existing_types.append(assign_type.name)
+
+if 'summative' not in existing_types:
+    db.assignment_types.insert(name='summative')
+
+if 'formative' not in existing_types:
+    db.assignment_types.insert(name='formative')
+
+if 'external' not in existing_types:
+    db.assignment_types.insert(name='external')
+
+
+
+
 db.define_table('assignments',
     Field('course', db.courses),
     Field('assignment_type', db.assignment_types, requires=IS_EMPTY_OR(IS_IN_DB(db, 'assignment_types.id', '%(name)s'))),
@@ -138,6 +155,8 @@ db.define_table('assignments',
     Field('points', 'integer'),
     Field('threshold', 'integer', default=1),
     Field('released', 'boolean'),
+    Field('description', 'text'),
+    Field('duedate','datetime'),
     format='%(name)s',
     migrate='runestone_assignments.table'
     )
@@ -471,7 +490,7 @@ def assignment_release_grades(assignment, released=True):
 db.assignments.release_grades = Field.Method(lambda row, released=True: assignment_release_grades(row.assignments, released))
 
 
-
+# now deprecated; use the new questions table in questions.py
 db.define_table('problems',
     Field('assignment', db.assignments),
     Field('acid', 'string'),
@@ -479,16 +498,30 @@ db.define_table('problems',
     )
 
 db.define_table('grades',
+    # This table records grades on whole assignments, not individual questions
     Field('auth_user', db.auth_user),
     Field('assignment', db.assignments),
     Field('score', 'double'),
+    Field('manual_total', 'boolean'),
     Field('projected', 'double'),
     migrate='runestone_grades.table',
     )
 
+# deprecated; now storing deadlines directly in assignments table, so no separate deadlines for different sections
 db.define_table('deadlines',
     Field('assignment', db.assignments, requires=IS_IN_DB(db, 'assignments.id', db.assignments._format)),
     Field('section', db.sections, requires=IS_EMPTY_OR(IS_IN_DB(db, 'sections.id', '%(name)s'))),
     Field('deadline', 'datetime'),
     migrate='runestone_deadlines.table',
+    )
+
+db.define_table('question_grades',
+    # This table records grades on individual gradeable items
+    Field('sid', type='string', notnull=True),
+    Field('course_name',type='string', notnull=True),
+    Field('div_id', type = 'string', notnull=True),
+    Field('useinfo_id', db.useinfo), # the particular useinfo run that was graded
+    Field('score', type='double'),
+    Field('comment', type = 'text'),
+    migrate='runestone_question_grades.table',
     )
