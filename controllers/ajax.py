@@ -229,6 +229,13 @@ def gethist():
 
     course_name = auth.user.course_name
 
+    # LCMOD - look up course by id if it isn't on the user obj
+    if course_name == '':
+        course_id = auth.user.course_id
+        results = db(db.courses.id==course_id).select()
+        for res in results:
+            course_name = res.course_name
+
     res = {}
     if sid:
         query = ((codetbl.sid == sid) & (codetbl.acid == acid) & (codetbl.course_id == course_name) & (codetbl.timestamp != None))
