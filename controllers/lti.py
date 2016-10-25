@@ -21,6 +21,7 @@ def index():
     last_name = request.vars.get('lis_person_name_family', None)
     first_name = request.vars.get('lis_person_name_given', None)
     email = request.vars.get('lis_person_contact_email_primary', None)
+    redirect_url = request.vars.get('custom_redirect_url', None)
     
     
     if user_id is None :
@@ -111,4 +112,7 @@ def index():
     #    print "Logged in..."
         logged_in = True
     
-    return dict(logged_in=logged_in, lti_errors=lti_errors, masterapp=masterapp)
+        if redirect_url is not None:
+          return redirect(redirect_url)
+        else:
+          return dict(logged_in=logged_in, lti_errors=lti_errors, masterapp=masterapp, remote_addr=redirect_url)
