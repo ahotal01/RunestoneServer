@@ -11,7 +11,7 @@ function dodredirect() {
 }
 if ( window.self === window.top ) { 
    // alert('/{{=masterapp}}');
-   window.location.href = '/{{=masterapp}}';
+   window.location.href = '/{{=remote_addr}}';
 } else { 
     document.write('<p>You are running this tool in an iframe, the login might not work due to cookies.  ' + 
         'For best results, reconfigure your LMS to launch this tool in a new window.</p>');

@@ -62,8 +62,17 @@ def index():
         else :
             full_uri = 'http://'
         full_uri = full_uri + request.env.http_host + request.env.request_uri
-        oauth_request = oauth.OAuthRequest.from_request('POST', full_uri, None, dict(request.vars))
-    
+
+        split_uri = full_uri.split("?")
+        if len(split_uri) > 1:
+          uri_without_query_params = split_uri[0]
+          query_params = split_uri[1]
+        else:
+          uri_without_query_params = split_uri[0]
+          query_params = None
+
+        oauth_request = oauth.OAuthRequest.from_request('POST', uri_without_query_params, None, dict(request.vars), query_params)
+
         try:
 #            print "secret: ", myrecord.secret
 #            print "Incoming request from:", full_uri
@@ -111,8 +120,11 @@ def index():
         auth.login_user(user)
     #    print "Logged in..."
         logged_in = True
-    
+
         if redirect_url is not None:
-          return redirect(redirect_url)
+          # canvas copies the redirect url into the post body so we have two of these (one in query_params and one in the post body). Just grabbing the first one
+          remote_addr = redirect_url[0]
         else:
-          return dict(logged_in=logged_in, lti_errors=lti_errors, masterapp=masterapp, remote_addr=redirect_url)
+          remote_addr = masterapp
+
+        return dict(logged_in=logged_in, lti_errors=lti_errors, masterapp=masterapp, remote_addr=remote_addr)
