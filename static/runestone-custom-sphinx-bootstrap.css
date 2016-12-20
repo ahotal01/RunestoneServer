@@ -1,6 +1,13 @@
 /* Runestone custom modifications */
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Arvo", sans-serif;
+}
 
 body {
+    font-family: "Montserrat", serif;
     padding-top: 60px;
     background-color: #eeeeee;
 }
@@ -147,7 +154,6 @@ div.section {
   -o-border-radius: 0;
   border-radius: 0;
   border-width: 0; margin: 0; padding: 0; background: transparent;
-  font-family:  Monaco, Courier New, monospace;
   font-size: inherit;
   padding: 0; margin: 0;
   white-space: pre;
@@ -158,7 +164,6 @@ button.btn, btn.btn-sm,
 input[type="submit"].btn.btn-sm,
 input[type="button"].btn.btn-sm {
     font-size: 1em;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .btn {
@@ -271,7 +276,6 @@ div.flash {
     background-image: -moz-linear-gradient(90deg, #222, #000);
     background-image: linear-gradient(top, #222, #000);
     background-repeat: repeat-x;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     z-index: 2000;
 }
@@ -302,7 +306,6 @@ div.flash {
 #sign_in_text td {
     font-size: 17px;
     color: #333;
-    font-family: 'lucida grande', Verdana, sans-serif;
     padding-bottom: 13px;
 }
 
