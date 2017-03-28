@@ -50,7 +50,7 @@ def index():
         if len(masterapp) < 1 :
             masterapp = 'welcome'
     #    print "masterapp",masterapp
-        session.connect(request, response, masterapp=masterapp, db=db)
+        session.connect(request, response, masterapp=masterapp, cookie_key=settings.cookie_key, compression_level=-1)
     
         oauth_server = oauth.OAuthServer(oauth_store.LTI_OAuthDataStore(myrecord.consumer,myrecord.secret))
         oauth_server.add_signature_method(oauth.OAuthSignatureMethod_PLAINTEXT())
