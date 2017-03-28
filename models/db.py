@@ -14,7 +14,7 @@ import datetime
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
     db = DAL(settings.database_uri,fake_migrate_all=False)
-    session.connect(request, response, masterapp='runestone', db=db)
+    session.connect(request, response, masterapp='runestone', cookie_key=settings.cookie_key, compression_level=-1)
 
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
