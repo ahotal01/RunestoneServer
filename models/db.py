@@ -58,6 +58,7 @@ if settings.enable_captchas:
 auth.settings.login_captcha = False
 auth.settings.retrieve_password_captcha	= False
 auth.settings.retrieve_password_captcha	= False
+auth.settings.expiration = 3600*24*60
 auth.settings.long_expiration = 3600*24*60
 #auth.settings.retrieve_username_captcha	= False
 
