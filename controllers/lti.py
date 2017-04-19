@@ -118,6 +118,7 @@ def index():
     #    print user, type(user)
     #    print "Logging in..."
         auth.login_user(user)
+        session.auth.remember_me = True
     #    print "Logged in..."
         logged_in = True
 
