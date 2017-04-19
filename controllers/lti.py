@@ -118,7 +118,9 @@ def index():
     #    print user, type(user)
     #    print "Logging in..."
         auth.login_user(user)
+        # make sure session cookies expiration lasts 2 months
         session.auth.remember_me = True
+        response.session_cookie_expires = auth.settings.expiration
     #    print "Logged in..."
         logged_in = True
 
