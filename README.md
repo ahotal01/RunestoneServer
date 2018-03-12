@@ -11,11 +11,11 @@ eBook. The easiest/recommended way is to use [pip](http://www.pip-installer.org/
 
 If you're using a Mac, we highly recommend installing [Homebrew](http://brew.sh) and using it to install python (which also installs pip), rather than using the built-in installation.
 
-You should set up a virtualenv for the app. To do that, [install virtualenv and virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions.
+You should set up a virtualenv for the app. To do that, [install virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) per the linked instructions. If you've never used virtualenv before, consult the [documentation](https://virtualenv.pypa.io/en/stable/) as needed.
 
 ### Install web2py
 
-The easiest way to do so is to download the source code distribution from the [web2py site](http://www.web2py.com/init/default/download). After you download it, extract the zip file to a folder on your hard drive (web2py requires no real "installation"). Avoid the web2py.app installation on OS X as it messes with the Python path.
+The easiest way to do so is to download the source code distribution from the [web2py site](http://www.web2py.com/init/default/download). After you download it, extract the zip file to a folder on your hard drive (web2py requires no real "installation"). Avoid the web2py.app installation on OS X, as it messes with the Python path.
 
 Clone this repository -- that is, the RunestoneSever -- into `web2py/applications`. Clone it into runestone rather than the default RunestoneServer: `git clone <repo_url> runestone`
 
@@ -25,7 +25,7 @@ Clone the [thinkcspy](https://github.com/LaunchCodeEducation/thinkcspy) book int
 
 ### Install app dependencies
 
-You can install all dependencies by running the following command in main runestone directory. Make sure you have activated your virtualenv: `pip install -r requirements.txt`
+You can install all dependencies by running the following command in main runestone directory. Make sure you have activated your virtualenv: `pip install -r requirements.txt`. If this yields an error, make sure your path is set to a version of postgreSQL that is supported by pytz. To check this, run `pg_config --version`.
 
 ### Set up your local database
 
@@ -33,7 +33,7 @@ You can install all dependencies by running the following command in main runest
 
 * Create a database
 
-* Figure out your database connection string. It will be something like `postgres://username:passwd@localhost/dbname`
+* Figure out your database connection string. It will be something like `postgresql://username:passwd@localhost/dbname`
 
 #### Mac Installation
 
@@ -41,9 +41,9 @@ Install the [Postgres app](http://postgresapp.com).
 
 In `~/.bash_profile` add:
 
-    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin
 
-At a command line:
+To ensure that this version is provided in the Postgres installation, locate the listed folder and make sure the number used in the above PATH is there. If the listed versions differ, replace `9.6` with one such listing. At a command line:
 
     $ source ~/.bash_profile
     $ createdb runestone
@@ -77,7 +77,7 @@ In postgres (`psql`):
 
 * `runestone build`
 
-  * At the end, it should say `trying alternative database access due to  No module named pydal` and then, if things are working correctly, start outputting the names of the chapters.
+  * At the end, it should say `trying alternative database access due to No module named pydal` and then, if things are working correctly, start outputting the names of the chapters.
 
 * Deploy the book
     * The following may not be necessary. Check the static directory first to see if the book contents were already moved there. From `runestone/books/<your book name>`:
@@ -105,4 +105,4 @@ In postgres (`psql`):
 
 # Documentation
 
-There is an official [documentation site](http://docs.runestoneinteractive.org>) created by the original development team.
+There is an official [documentation site](http://runestoneinteractive.org/build/html/index.html) created by the original development team.
